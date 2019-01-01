@@ -2,6 +2,8 @@ const _ = require('lodash');
 const express = require('express');
 const bodyParser = require('body-parser');
 const {ObjectID} = require('mongodb');
+const session = require('express-session');
+const { ExpressOIDC } = require('@okta/oidc-middleware');
 
 const hbs = require('hbs');
 const fs = require('fs');
