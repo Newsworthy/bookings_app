@@ -1,63 +1,35 @@
   {{> header}}
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
 	<div class="container-fluid" id="body">
 	    <div class="container" id="page-header">
 	        <h1><span id="headline">Create a booking</span></h1>
 	        <hr>
-					<form>
+					<form method="post" action="/create">
   <div class="form-group row">
-    <label for="date_start" class="col-4 col-form-label">Starting date</label>
+    <label for="start" class="col-4 col-form-label">Starting date/time</label>
     <div class="col-8">
       <div class="input-group">
         <div class="input-group-addon">
           <i class="fa fa-calendar"></i>
         </div>
-        <input id="date_start" name="date_start" placeholder="DD/MM/YYYY" type="date" required="required" class="form-control here" aria-describedby="date_startHelpBlock">
+        <input id="start" name="start" placeholder="DD/MM/YYYY" type="datetime-local" required="required" class="form-control here" aria-describedby="date_startHelpBlock">
       </div>
-      <span id="date_startHelpBlock" class="form-text text-muted">Enter date of shift start</span>
     </div>
   </div>
   <div class="form-group row">
-    <label for="start_time" class="col-4 col-form-label">Start time</label>
-    <div class="col-8">
-      <div class="input-group">
-        <div class="input-group-addon">
-          <i class="fa fa-clock-o"></i>
-        </div>
-        <input id="start_time" name="start_time" placeholder="00:00" type="time" class="form-control here" required="required" aria-describedby="start_timeHelpBlock">
-      </div>
-      <span id="start_timeHelpBlock" class="form-text text-muted">Start time of shift</span>
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="end_date" class="col-4 col-form-label">Ending date</label>
+    <label for="end" class="col-4 col-form-label">Ending date/time</label>
     <div class="col-8">
       <div class="input-group">
         <div class="input-group-addon">
           <i class="fa fa-calendar"></i>
         </div>
-        <input id="end_date" name="end_date" placeholder="DD/MM/YYYY" type="date" class="form-control here" aria-describedby="end_dateHelpBlock" required="required">
-      </div>
-      <span id="end_dateHelpBlock" class="form-text text-muted">Shift end date</span>
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="end_time" class="col-4 col-form-label">End time</label>
-    <div class="col-8">
-      <div class="input-group">
-        <div class="input-group-addon">
-          <i class="fa fa-clock-o"></i>
-        </div>
-        <input id="end_time" name="end_time" placeholder="00:00" type="time" required="required" class="form-control here">
+        <input id="end" name="end" placeholder="DD/MM/YYYY" type="datetime-local" class="form-control here" aria-describedby="end_dateHelpBlock" required="required">
       </div>
     </div>
   </div>
-  <div class="form-group row">
-    <label for="booking_type" class="col-4 col-form-label">Booking Type</label>
+    <div class="form-group row">
+    <label for="bookingType" class="col-4 col-form-label">Booking Type</label>
     <div class="col-8">
-      <select class="form-control" id="booking_type" name="booking_type" type="text" class="form-control here" required="required">
+      <select class="form-control" id="bookingType" name="bookingType" type="text" class="form-control here" required="required">
 				<option>Camera Operating</option>
 				<option>Editing</option>
 				<option>Dejero Live Shot</option>
@@ -70,12 +42,12 @@
     <label class="col-4">Equipment required</label>
     <div class="col-8">
       <label class="custom-control custom-radio">
-        <input name="equipment" type="radio" class="custom-control-input" value="yes_equip" required="required">
+        <input name="equipment" type="radio" class="custom-control-input" value="yes" required="required">
         <span class="custom-control-indicator"></span>
         <span class="custom-control-description">Yes</span>
       </label>
       <label class="custom-control custom-radio">
-        <input name="equipment" type="radio" class="custom-control-input" value="no_equip" required="required">
+        <input name="equipment" type="radio" class="custom-control-input" value="no" required="required">
         <span class="custom-control-indicator"></span>
         <span class="custom-control-description">No</span>
       </label>
@@ -85,12 +57,12 @@
     <label class="col-4">Vehicle required</label>
     <div class="col-8">
       <label class="custom-control custom-radio">
-        <input name="vehicle" type="radio" class="custom-control-input" value="yes_vehicle" required="required">
+        <input name="vehicle" type="radio" class="custom-control-input" value="yes" required="required">
         <span class="custom-control-indicator"></span>
         <span class="custom-control-description">Yes</span>
       </label>
       <label class="custom-control custom-radio">
-        <input name="vehicle" type="radio" class="custom-control-input" value="no_vehicle" required="required">
+        <input name="vehicle" type="radio" class="custom-control-input" value="no" required="required">
         <span class="custom-control-indicator"></span>
         <span class="custom-control-description">No</span>
       </label>
@@ -109,21 +81,28 @@
     </div>
   </div>
   <div class="form-group row">
-    <label for="booked_by" class="col-4 col-form-label">Booked by:</label>
+    <label for="booker" class="col-4 col-form-label">Booked by:</label>
     <div class="col-8">
-      <input id="booked_by" name="booked_by" type="text" class="form-control here" required="required">
+      <input id="booker" name="booker" type="text" class="form-control here" required="required">
     </div>
   </div>
   <div class="form-group row">
-    <label for="client_email" class="col-4 col-form-label">Contact email</label>
+    <label for="bookerEmail" class="col-4 col-form-label">Contact email</label>
     <div class="col-8">
-      <input id="client_email" name="client_email" type="email" class="form-control here" required="required" placeholder="name@company.com">
+      <input id="bookerEmail" name="bookerEmail" type="email" class="form-control here" required="required" placeholder="name@company.com">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="additionalInfo" class="col-4 col-form-label">Additional Info</label>
+    <div class="col-8">
+      <textarea id="additionalInfo" name="additionalInfo" type="textarea" class="form-control here" rows="3"></textarea>
     </div>
   </div>
   <div class="form-group row">
     <div class="offset-4 col-8">
       <button name="submit" type="submit" class="btn btn-primary">Submit</button>
     </div>
+    <hr>
   </div>
 </form>
 
